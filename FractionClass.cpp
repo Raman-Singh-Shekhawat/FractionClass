@@ -93,11 +93,36 @@ class Fraction{
 		return Ans;
 	}
 
+	// Pre-Increment Operator
+	Fraction operator++(){
+
+		this -> numerator = (this -> numerator) + (this -> denominator);
+		this -> denominator = this -> denominator;
+
+		Simplify();
+
+		Fraction Ans(this -> numerator, this -> denominator);
+
+		return Ans;
+
+	}
+
+	
+	// Post-Increment Operator
+	Fraction operator++(int){
+
+
+		Fraction Ans(this -> numerator, this -> denominator);	
+			
+		this -> numerator = (this -> numerator) + (this -> denominator);
+		this -> denominator = this -> denominator;
+
+		return Ans;
+	}
+
 	void Print(){
 
 
 		cout << endl << this -> numerator << "/" << denominator << endl;
 	}
 };
-
-
