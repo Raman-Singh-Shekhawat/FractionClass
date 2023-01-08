@@ -94,7 +94,7 @@ class Fraction{
 	}
 
 	// Pre-Increment Operator
-	Fraction operator++(){
+	Fraction& operator++(){
 
 		this -> numerator = (this -> numerator) + (this -> denominator);
 		this -> denominator = this -> denominator;
