@@ -101,9 +101,7 @@ class Fraction{
 
 		Simplify();
 
-		Fraction Ans(this -> numerator, this -> denominator);
-
-		return Ans;
+		return *this;
 
 	}
 
@@ -118,6 +116,26 @@ class Fraction{
 		this -> denominator = this -> denominator;
 
 		return Ans;
+	}
+
+
+	Fraction& operator+= (Fraction const &f){
+
+
+
+		int lcm = this -> denominator * f.denominator;
+		int num1 = (lcm / this -> denominator) * (this -> numerator);
+		int num2 = (lcm / f.denominator) * (f.numerator);
+
+		int newNum = num1 + num2;
+		int newDen = lcm;
+
+		this -> numerator = newNum;
+		this -> denominator = newDen;
+
+		Simplify();	
+		
+		return *this;	
 	}
 
 	void Print(){
