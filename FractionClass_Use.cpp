@@ -5,8 +5,8 @@ using namespace std;
 
 #include "FractionClass.cpp"
 
-int main(){
-
+int main()
+{
 
 	int numerator1;
 	cout << "Enter the numerator of the first fraction: ";
@@ -33,8 +33,9 @@ int main(){
 	cout << "The second fraction is: ";
 	f2.Print();
 
-	f2.Add(f1);
+	Fraction Ans = f2 + f1;
 
-	cout << endl << "The addition of the fractions result in a simplified fraction that cannot be simplified any further: ";
-	f2.Print();
+	cout << endl
+		 << "The addition of the fractions result in a simplified fraction that cannot be simplified any further: ";
+	Ans.Print();
 }

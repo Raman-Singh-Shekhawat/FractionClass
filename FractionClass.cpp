@@ -1,13 +1,44 @@
+#include <iostream>
+#include <climits>
 #include <algorithm>
+
+using namespace std;
+
 
 class Fraction{
 
-	private:
+
+	public:
 
 	int numerator;
 	int denominator;
 
-	public:
+
+	// Used As A Default Constructor
+	Fraction(){
+
+	}
+
+
+	void Simplify(){
+
+	
+		int upTo = min(this -> numerator, this -> denominator);
+		int  UseSimplify = 1;		
+
+		for(int i = 1; i <= upTo; i++){
+
+
+			if(this -> numerator % i == 0 && this -> denominator % i == 0){
+
+
+				UseSimplify = i;
+			}
+		}
+
+		this -> numerator = this -> numerator / UseSimplify;
+		this -> denominator = this -> denominator / UseSimplify;
+	}
 
 	Fraction(int numerator, int denominator){
 
@@ -16,44 +47,57 @@ class Fraction{
 		this -> denominator = denominator;
 	}
 
+	Fraction operator+(Fraction const &f){
+
+		int lcm = this -> denominator * f.denominator;
+		int num1 = (lcm / this -> denominator) * (this -> numerator);
+		int num2 = (lcm / f.denominator) * (f.numerator);
+
+		int newNum = num1 + num2;
+		int newDen = lcm;
+
+		Fraction Ans(newNum, newDen);
+
+		Ans.Simplify();
+
+		return Ans;
+	}
+
+	Fraction operator-(Fraction const &f){
+
+
+		int lcm = this -> denominator * f.denominator;
+		int num1 = (lcm / this -> denominator) * (this -> numerator);
+		int num2 = (lcm / f.denominator) * (f.numerator);
+
+		int newNum = num1 - num2;
+		int newDen = lcm;	
+
+		Fraction Ans(newNum, newDen);
+
+		Ans.Simplify();
+		
+		return Ans;	
+	}
+
+	Fraction operator*(Fraction const &f){
+
+
+		int newNum = this -> numerator * f.numerator;
+		int newDen = this -> denominator * f.denominator;
+
+		Fraction Ans(newNum, newDen);
+
+		Ans.Simplify();
+
+		return Ans;
+	}
 
 	void Print(){
 
 
-		cout << numerator << " / " << denominator << endl;
-	}	
-	
-
-	void Add(Fraction f){ // Try dynamic allocation
-
-
-		int lcm = denominator * f.denominator;
-		int num1 = (lcm / denominator) * numerator;
-		int num2 = (lcm / f.denominator) * f.numerator;
-
-		numerator = num1 + num2;
-		denominator = lcm;
-
-		Simplify();
+		cout << endl << this -> numerator << "/" << denominator << endl;
 	}
-
-	void Simplify(){
-	
-		int gcd;
-		int minimum = min(numerator, denominator);
-
-		for(int i = 1; i <= minimum; i++){
-
-
-			if(numerator % i == 0 && denominator % i == 0){
-
-
-				gcd = i; // Try breaking the loop
-			}
-		}
-
-		numerator /= gcd;
-		denominator /= gcd;
-	}
-	
 };
+
+
